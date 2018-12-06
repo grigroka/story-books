@@ -1,6 +1,7 @@
 'use strict';
 
 const express = require('express');
+const exphbs = require('express-handlebars');
 const mongoose = require('mongoose');
 const session = require('express-session');
 const passport = require('passport');
@@ -29,6 +30,15 @@ mongoose
 
 // Init Express App
 const app = express();
+
+// Handlebars Middleware
+app.engine(
+  'handlebars',
+  exphbs({
+    defaultLayout: 'main'
+  })
+);
+app.set('view engine', 'handlebars');
 
 // Session Middleware
 app.use(
