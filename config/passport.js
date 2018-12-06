@@ -14,8 +14,11 @@ module.exports = function(passport) {
         proxy: true
       },
       (accessToken, refreshToken, profile, done) => {
-        console.log(accessToken);
-        console.log(profile);
+        // Get profile image url and trim params
+        const image = profile.photos[0].value.substring(
+          0,
+          profile.photos[0].value.indexOf('?')
+        );
       }
     )
   );
