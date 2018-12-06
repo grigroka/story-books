@@ -2,6 +2,7 @@
 
 const express = require('express');
 const mongoose = require('mongoose');
+const session = require('express-session');
 const passport = require('passport');
 
 // Load User Model
@@ -28,6 +29,20 @@ mongoose
 // Init Express App
 const app = express();
 
+// Session Middleware
+app.use(
+  session({
+    secret: 'secret',
+    resave: false,
+    saveUninitialized: false
+  })
+);
+
+// Passport Middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Routes
 app.get('/', (req, res) => {
   res.send('It Works!');
 });
