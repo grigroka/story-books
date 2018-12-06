@@ -12,6 +12,7 @@ require('./models/User');
 require('./config/passport')(passport);
 
 // Load Routes
+const index = require('./routes/index');
 const auth = require('./routes/auth');
 
 // Load Keys
@@ -48,12 +49,8 @@ app.use((req, res, next) => {
   next();
 });
 
-// Routes
-app.get('/', (req, res) => {
-  res.send('It Works!');
-});
-
 // Use Routes
+app.use('/', index);
 app.use('/auth', auth);
 
 // Server
