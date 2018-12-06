@@ -42,6 +42,12 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+// Set global vars
+app.use((req, res, next) => {
+  res.locals.user = req.user || null;
+  next();
+});
+
 // Routes
 app.get('/', (req, res) => {
   res.send('It Works!');
@@ -50,6 +56,7 @@ app.get('/', (req, res) => {
 // Use Routes
 app.use('/auth', auth);
 
+// Server
 const port = process.env.PORT || 5000;
 app.listen(port, () => {
   console.log(`Server started on port ${port}`);
