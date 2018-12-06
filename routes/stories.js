@@ -2,6 +2,7 @@
 
 const express = require('express');
 const router = express.Router();
+const { ensureAuthenticated, ensureGuest } = require('../helpers/auth');
 
 // Index
 router.get('/', (req, res) => {
@@ -9,7 +10,7 @@ router.get('/', (req, res) => {
 });
 
 // Add Story Form
-router.get('/add', (req, res) => {
+router.get('/add', ensureAuthenticated, (req, res) => {
   res.render('stories/add');
 });
 
