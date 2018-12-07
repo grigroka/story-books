@@ -20,9 +20,11 @@ router.get('/', (req, res) => {
 router.get('/show/:id', (req, res) => {
   Story.findOne({
     _id: req.params.id
-  }).then(story => {
-    res.render('stories/show', { story });
-  });
+  })
+    .populate('user')
+    .then(story => {
+      res.render('stories/show', { story });
+    });
 });
 
 // Add Story Form
