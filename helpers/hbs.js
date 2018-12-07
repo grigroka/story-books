@@ -11,7 +11,7 @@ module.exports = {
     }
     return str;
   },
-  stripTags: function() {
+  stripTags: function(input) {
     return input.replace(/<(?:.|\n)*?>/gm, '');
   }
 };
