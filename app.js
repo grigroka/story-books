@@ -24,7 +24,7 @@ const stories = require('./routes/stories');
 const keys = require('./config/keys');
 
 // Handlebars Helpers
-const { truncate, stripTags } = require('./helpers/hbs');
+const { truncate, stripTags, formatDate } = require('./helpers/hbs');
 
 // Mongoose Connect
 mongoose
@@ -48,7 +48,8 @@ app.engine(
   exphbs({
     helpers: {
       truncate,
-      stripTags
+      stripTags,
+      formatDate
     },
     defaultLayout: 'main'
   })
