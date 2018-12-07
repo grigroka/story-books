@@ -38,6 +38,15 @@ router.get('/user/:userId', (req, res) => {
     });
 });
 
+// Logged in user stories
+router.get('/my', ensureAuthenticated, (req, res) => {
+  Story.find({ user: req.user.id })
+    .populate('user')
+    .then(stories => {
+      res.render('stories/index', { stories });
+    });
+});
+
 // Add Story Form
 router.get('/add', ensureAuthenticated, (req, res) => {
   res.render('stories/add');
