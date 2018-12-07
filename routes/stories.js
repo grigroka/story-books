@@ -16,7 +16,8 @@ router.get('/add', ensureAuthenticated, (req, res) => {
 
 // Process Add Story
 router.post('/', (req, res) => {
-  res.send('sent');
+  console.log(req.body);
+  res.send('test');
 });
 
 module.exports = router;
