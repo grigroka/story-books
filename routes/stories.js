@@ -4,7 +4,6 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const Story = mongoose.model('stories');
-const User = mongoose.model('users');
 const { ensureAuthenticated } = require('../helpers/auth');
 
 // Stories Index
