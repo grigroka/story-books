@@ -2,6 +2,9 @@
 
 const express = require('express');
 const router = express.Router();
+const mongoose = require('mongoose');
+const Story = mongoose.model('stories');
+const User = mongoose.model('users');
 const { ensureAuthenticated } = require('../helpers/auth');
 
 // Stories Index
@@ -16,8 +19,25 @@ router.get('/add', ensureAuthenticated, (req, res) => {
 
 // Process Add Story
 router.post('/', (req, res) => {
-  console.log(req.body);
-  res.send('test');
+  let allowComments;
+  if (req.body.allowComments) {
+    allowComments = true;
+  } else {
+    allowComments = false;
+  }
+
+  const newStory = {
+    title: req.body.title,
+    body: req.body.body,
+    status: req.body.status,
+    allowComments,
+    user: req.user.id
+  };
+
+  // Create Story
+  new Story(newStory).save().then(story => {
+    res.redirect(`/stories/show/${story.id}`);
+  });
 });
 
 module.exports = router;

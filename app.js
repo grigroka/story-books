@@ -8,8 +8,9 @@ const mongoose = require('mongoose');
 const session = require('express-session');
 const passport = require('passport');
 
-// Load User Model
+// Load Models
 require('./models/User');
+require('./models/Story');
 
 // Passport Config
 require('./config/passport')(passport);
