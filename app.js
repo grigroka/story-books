@@ -25,7 +25,13 @@ const stories = require('./routes/stories');
 const keys = require('./config/keys');
 
 // Handlebars Helpers
-const { truncate, stripTags, formatDate, select } = require('./helpers/hbs');
+const {
+  truncate,
+  stripTags,
+  formatDate,
+  select,
+  editIcon
+} = require('./helpers/hbs');
 
 // Mongoose Connect
 mongoose
@@ -54,7 +60,8 @@ app.engine(
       truncate,
       stripTags,
       formatDate,
-      select
+      select,
+      editIcon
     },
     defaultLayout: 'main'
   })
