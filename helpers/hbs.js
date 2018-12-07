@@ -10,5 +10,8 @@ module.exports = {
       return newStr + '...';
     }
     return str;
+  },
+  stripTags: function() {
+    return input.replace(/<(?:.|\n)*?>/gm, '');
   }
 };
