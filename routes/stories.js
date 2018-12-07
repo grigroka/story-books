@@ -9,7 +9,11 @@ const { ensureAuthenticated } = require('../helpers/auth');
 
 // Stories Index
 router.get('/', (req, res) => {
-  res.render('stories/index');
+  Story.find({ status: 'public' })
+    .populate('user')
+    .then(stories => {
+      res.render('stories/index', { stories });
+    });
 });
 
 // Add Story Form
