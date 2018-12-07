@@ -2,7 +2,7 @@
 
 const express = require('express');
 const router = express.Router();
-const { ensureAuthenticated, ensureGuest } = require('../helpers/auth');
+const { ensureAuthenticated } = require('../helpers/auth');
 
 // Stories Index
 router.get('/', (req, res) => {
